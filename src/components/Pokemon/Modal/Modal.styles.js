@@ -25,17 +25,15 @@ export const Overlay = styled.div`
 export const Content = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.white};
-    max-width: 280px;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
     padding: 32px;
     position: relative;
     border-radius: 24px;
     box-shadow: 0px 5px 10px 1px rgb(0, 0, 0, 0.1);
-    min-width: 400px;
+    max-width: 800px;
   `}
 `;
 
@@ -66,6 +64,28 @@ export const CloseButton = styled.button`
     }
     &:after {
       transform: rotate(-45deg);
+    }
+  `}
+`;
+
+export const Info = styled.div`
+  ${({ theme }) => css`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+    padding-right: 32px;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 1px;
+      height: 100%;
+      background-color: ${theme.colors.slateGray};
+      opacity: 0.4;
     }
   `}
 `;
@@ -112,5 +132,43 @@ export const Description = styled.p`
     font-size: 14px;
     text-align: center;
     line-height: 21px;
+    margin-bottom: 16px;
   `}
+`;
+
+export const Habitat = styled.span`
+  ${({ theme }) => css`
+    color: ${theme.colors.mineShaft};
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+  `}
+`;
+
+export const CaptureRate = styled.span`
+  ${({ theme }) => css`
+    color: ${theme.colors.mineShaft};
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+  `}
+`;
+
+export const GrowthRate = styled.span`
+  ${({ theme }) => css`
+    color: ${theme.colors.mineShaft};
+    font-size: 14px;
+    margin-bottom: 6px;
+    font-weight: 500;
+    width: 100%;
+    text-align: center;
+  `}
+`;
+
+export const Details = styled.div`
+  padding-left: 32px;
 `;

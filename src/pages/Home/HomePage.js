@@ -24,7 +24,12 @@ const HomePage = () => {
       const promises = pokemonUrls.map(async (url) => {
         const pokemonData = await fetchApi(url);
         const specieData = await fetchApi(pokemonData.species.url);
-        const pokemon = getFormattedPokemon({ pokemon: pokemonData, specie: specieData });
+        const evolutionData = await fetchApi(specieData.evolution_chain.url);
+        const pokemon = getFormattedPokemon({
+          pokemon: pokemonData,
+          species: specieData,
+          evolutions: evolutionData
+        });
         return pokemon;
       });
       const newPokemons = await Promise.all(promises);
