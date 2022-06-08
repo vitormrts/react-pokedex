@@ -1,8 +1,8 @@
 import * as S from './Types.styles';
 
 const Types = ({ types }) => {
-  const typesMap = types.map(({ id, name, color }) => (
-    <S.Type key={id} color={color}>
+  const typesMap = types.map(({ name, color }) => (
+    <S.Type key={name} color={color}>
       <S.Name>{name}</S.Name>
     </S.Type>
   ));

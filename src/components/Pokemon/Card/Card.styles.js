@@ -28,6 +28,9 @@ export const Card = styled.div`
         animation-iteration-count: 0.5;
       }
     }
+    @media (max-width: ${theme.breakpoints.sm}px) {
+      max-width: 100%;
+    }
   `}
 
   @keyframes shake {
@@ -81,5 +84,6 @@ export const Name = styled.h2`
     color: ${theme.colors.oxfordBlue};
     margin-bottom: 8px;
     font-size: 20px;
+    text-align: center;
   `}
 `;

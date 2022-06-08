@@ -1,25 +1,29 @@
 import styled, { css } from 'styled-components';
 
 export const Image = styled.img`
-  width: 240px;
-  height: 240px;
-  object-fit: contain;
+  ${({ theme }) => css`
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+    @media (max-width: ${theme.breakpoints.md}px) {
+      width: 160px;
+      height: 160px;
+    }
+  `}
 `;
 
 export const Overlay = styled.div`
-  ${({ theme, isOpen }) => css`
-    background-color: rgb(0, 0, 0, 0.5);
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: ${isOpen ? 'flex' : 'none'};
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    z-index: 100;
-  `}
+  background-color: rgb(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 100;
 `;
 
 export const Content = styled.div`
@@ -34,38 +38,33 @@ export const Content = styled.div`
     border-radius: 24px;
     box-shadow: 0px 5px 10px 1px rgb(0, 0, 0, 0.1);
     max-width: 800px;
+    @media (max-width: ${theme.breakpoints.lg}px) {
+      max-width: 100%;
+      border-radius: 0;
+      overflow-y: scroll;
+      display: block;
+    }
   `}
 `;
 
 export const CloseButton = styled.button`
-  ${({ theme }) => css`
-    position: absolute;
-    top: 16px;
-    right: 32px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    outline: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    &:before,
-    &:after {
-      content: '';
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 4px;
-      height: 32px;
-      background-color: ${theme.colors.slateGray};
-    }
-    &:before {
-      transform: rotate(45deg);
-    }
-    &:after {
-      transform: rotate(-45deg);
-    }
-  `}
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  display: flex;
+  width: 40px;
+  height: 40px;
+  padding: 8px;
+  align-items: center;
+  justify-content: center;
+  svg {
+    width: 22px;
+    height: 22px;
+  }
 `;
 
 export const Info = styled.div`
@@ -75,7 +74,6 @@ export const Info = styled.div`
     justify-content: center;
     flex-direction: column;
     position: relative;
-    height: 100%;
     padding-right: 32px;
     &:after {
       content: '';
@@ -86,6 +84,12 @@ export const Info = styled.div`
       height: 100%;
       background-color: ${theme.colors.slateGray};
       opacity: 0.4;
+      @media (max-width: ${theme.breakpoints.lg}px) {
+        display: none;
+      }
+    }
+    @media (max-width: ${theme.breakpoints.lg}px) {
+      padding-right: 0;
     }
   `}
 `;
@@ -133,6 +137,12 @@ export const Description = styled.p`
     text-align: center;
     line-height: 21px;
     margin-bottom: 16px;
+    @media (max-width: ${theme.breakpoints.lg}px) {
+      max-width: 550px;
+    }
+    @media (max-width: ${theme.breakpoints.md}px) {
+      max-width: 290px;
+    }
   `}
 `;
 
@@ -170,5 +180,21 @@ export const GrowthRate = styled.span`
 `;
 
 export const Details = styled.div`
-  padding-left: 32px;
+  ${({ theme }) => css`
+    padding-left: 32px;
+    @media (max-width: ${theme.breakpoints.lg}px) {
+      display: flex;
+      padding-left: 0;
+      width: 100%;
+      justify-content: center;
+      margin-top: 16px;
+      max-width: 600px;
+      margin: 0 auto;
+      margin-top: 16px;
+    }
+    @media (max-width: ${theme.breakpoints.md}px) {
+      flex-direction: column;
+      gap: 16px;
+    }
+  `}
 `;

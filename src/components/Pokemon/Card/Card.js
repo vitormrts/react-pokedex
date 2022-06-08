@@ -14,7 +14,9 @@ const Card = ({ content }) => {
         <S.Name>{name}</S.Name>
         <Types types={types} />
       </S.Card>
-      <PokemonModal content={content} isOpen={modalIsOpen} setIsOpen={setModalIsOpen} />
+      {modalIsOpen && (
+        <PokemonModal content={content} isOpen={modalIsOpen} setIsOpen={setModalIsOpen} />
+      )}
     </>
   );
 };

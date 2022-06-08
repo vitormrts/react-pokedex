@@ -18,13 +18,18 @@ export const Title = styled.h2`
 `;
 
 export const Stats = styled.ul`
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-  gap: 16px;
-  width: 100%;
+  ${({ theme }) => css`
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 16px;
+    width: 100%;
+    @media (max-width: ${theme.breakpoints.lg}px) {
+      align-items: center;
+    }
+  `}
 `;
 
 export const Stat = styled.li`

@@ -1,4 +1,5 @@
 import { Types, Stats, Evolutions } from 'components/Pokemon';
+import { CrossIcon } from 'icons';
 import * as S from './Modal.styles';
 
 const Modal = ({ content, isOpen, setIsOpen }) => {
@@ -17,9 +18,11 @@ const Modal = ({ content, isOpen, setIsOpen }) => {
   } = content;
 
   return (
-    <S.Overlay isOpen={isOpen}>
+    <S.Overlay>
       <S.Content>
-        <S.CloseButton onClick={() => setIsOpen(!isOpen)} />
+        <S.CloseButton onClick={() => setIsOpen(!isOpen)}>
+          <CrossIcon />
+        </S.CloseButton>
         <S.Info>
           <S.Image src={image} alt={name} />
           <S.Id>#{id}</S.Id>

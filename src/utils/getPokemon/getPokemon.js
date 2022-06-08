@@ -1,7 +1,8 @@
 import { TYPE_COLORS } from 'base/constants';
+import { fetchUrl } from 'services/api';
 import capitalizeString from 'utils/capitalizeString';
 
-const getFormattedPokemon = ({ pokemon, species, evolutions }) => {
+const getFormattedPokemon = async ({ pokemon } = {}) => {
   const {
     name = '',
     id = 0,
@@ -10,20 +11,28 @@ const getFormattedPokemon = ({ pokemon, species, evolutions }) => {
       front_default: ''
     },
     abilities = [],
-    stats = []
+    stats = [],
+    species = {
+      url: ''
+    }
   } = pokemon;
+
+  const speciesData = await fetchUrl(species.url);
 
   const {
     flavor_text_entries: flavorTextEntries = [],
     genera = [],
     capture_rate: captureRate = 0,
-    growth_rate: { name: growthRate = '' },
-    habitat = {
-      name: ''
+    growth_rate: growthRate,
+    habitat,
+    evolution_chain: evolutionChain = {
+      url: ''
     }
-  } = species;
+  } = speciesData;
 
-  const { chain } = evolutions;
+  const evolutionData = await fetchUrl(evolutionChain.url);
+
+  const { chain } = evolutionData;
 
   const formattedTypes = types.map(({ type }) => ({
     name: type.name,
@@ -48,11 +57,12 @@ const getFormattedPokemon = ({ pokemon, species, evolutions }) => {
     const {
       evolves_to: evolvesTo = [],
       evolution_details: evolutionDetails = [],
-      species: { name: speciesName = '' } = {}
+      species: { name: speciesName = '', url: speciesUrl } = {}
     } = evolution;
 
     results.push({
       name: capitalizeString(speciesName),
+      url: speciesUrl,
       minLevel: evolutionDetails[0]?.min_level
     });
 
@@ -70,8 +80,8 @@ const getFormattedPokemon = ({ pokemon, species, evolutions }) => {
     captureRate,
     description,
     genera: generaName,
-    growthRate,
-    habitat: capitalizeString(habitat.name),
+    growthRate: growthRate?.name || '',
+    habitat: capitalizeString(habitat?.name || ''),
     id,
     image: sprites.front_default,
     name: capitalizeString(name),

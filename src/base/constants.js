@@ -19,4 +19,8 @@ const TYPE_COLORS = {
   fairy: '#D685AD'
 };
 
-export { TYPE_COLORS };
+const TOTAL_POKEMONS = 151;
+
+const POKEMONS_PER_PAGE = 20;
+
+export { TYPE_COLORS, TOTAL_POKEMONS, POKEMONS_PER_PAGE };
